@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Search Page</title>
-</head>
 <body>
 <h1>TweetClean</h1>
 <form>
@@ -11,11 +8,9 @@
     <button formaction="{% url 'GUI:Results' %}">Go to Results</button>
   </form> 
 
-<h1>Enter your search here</h1>
-<p>Question 1.</p>
 <div class="navbar" id="myNavbar">
-    <a href="{% url 'GUI:Manual' %}">Manual</a>
     <a href="{% url 'GUI:FAQs' %}">FAQs</a>
+    <a href="{% url 'GUI:Manual' %}">Manual</a>
 </div>
 
 
