@@ -21,12 +21,14 @@
         .button:hover span {padding-right: 25px;}
         .button:hover span:after {opacity: 1; right: 0;}
         form {text-align: center;}
-        input {width: 300px; margin-top: 10px; margin-bottom: 10px}
+        input {width: 300px; margin-top: 10px; margin-bottom: 10px; border: none;}
         .container {display: flex; justify-content: center; align-items: center; height: 250px;}
     </style>
 </head>
 <body>
-<img src="/static/GUI/images/TweetClean.jpg" alt="TweetClean" class="responsive">
+<a href="{% url 'GUI:Search' %}">
+    <img src="/static/GUI/images/TweetClean.jpg" alt="TweetClean" class="responsive">
+</a>
 <div class="container">
 <form>
     <label for="fname">Enter Your Twitter Name Here...</label><br>
