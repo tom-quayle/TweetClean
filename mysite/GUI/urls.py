@@ -9,4 +9,5 @@ urlpatterns = [
     path('Manual/', views.Manual, name='Manual'),
     path('Results/', views.Results, name='Results'),
     path('Search/', views.Search, name='Search'),
+    path('download/<str:filename>/', views.download_file, name='download_file'),
 ]
