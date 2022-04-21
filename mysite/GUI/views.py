@@ -6,6 +6,8 @@ import os
 
 from django.http import HttpResponse
 from django.template import loader
+from .forms import SearchTwitter # delete if not using forms.py
+from .Web_Crawler import twitterCrawl
 
 def index(request):
     return HttpResponse('hello world')
@@ -17,10 +19,15 @@ def Manual(request):
     return render(request,'GUI/ManualPage.html')
 
 def Results(request):
-    return render(request,'GUI/ResultsPage.html')
+    name = request.GET['name']
+    SelfObject = twitterCrawl(v2=True)
+    SelfObject.search_tweets_v2(name)
+    print(SelfObject.results) # prints Tweets to console
+    return render(request,'GUI/ResultsPage.html', {"SearchResults": name}) # name is placeholder until we implement AI
 
 def Search(request):
-    return render(request,'GUI/SearchPage.html')
+    form = SearchTwitter() # have Django make a premade form for us?
+    return render(request,'GUI/SearchPage.html', {"form": form}) # have Django make a premade form for us?
 
 def download_file(request, filename=''):
     if filename != '':
