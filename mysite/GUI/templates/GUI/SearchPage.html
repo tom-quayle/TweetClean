@@ -12,9 +12,9 @@
     </a>
     <div class="container">
         <form>
-            <!--{{form.as_p}}--> <!-- this is here if we want Django to make the form for us -->
             <label for="name">Enter Your Twitter Name Here...</label><br>
-            <input type="text" id="name" name="name" value="@"><br>
+            {{form.as_p}} <!-- this is here if we want Django to make the form for us -->
+            <!--<input type="text" id="name" name="name" value="@"><br>-->
             <button id = "goButton" class="button" formaction="{% url 'GUI:Results' %}"><span>Go</span></button>
         </form>
     </div>
