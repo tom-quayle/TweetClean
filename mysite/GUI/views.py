@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import SearchTwitter # delete if not using forms.py
 from .Web_Crawler import twitterCrawl
+from .sentiment import AiSentiment
 
 def index(request):
     return HttpResponse('hello world')
@@ -21,7 +22,9 @@ def Manual(request):
 def Results(request):
     name = request.GET['name']
     SelfObject = twitterCrawl(v2=True)
-    SelfObject.search_tweets_v2(name)
+    SelfObject.search_tweets_v2('"{}" lang:en'.format(name))
+    #AIObject = AiSentiment()
+    #print(AIObject.excactResults(SelfObject.results))
     print(SelfObject.results) # prints Tweets to console
     return render(request,'GUI/ResultsPage.html', {"SearchResults": name}) # name is placeholder until we implement AI
 
