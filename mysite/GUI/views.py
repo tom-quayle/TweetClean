@@ -28,7 +28,8 @@ def Results(request):
     neutral = len(AIObject.data['Neutral'])
     negative = len(AIObject.data['Negative'])
     positive = len(AIObject.data['Positive'])
-    return render(request,'GUI/ResultsPage.html', {"PositiveSearchResults": positive, "NegativeSearchResults": negative, "NeutralSearchResults": neutral, "SearchTerm": name}) # name is placeholder until we implement AI
+    totalTweets = neutral + negative + positive
+    return render(request,'GUI/ResultsPage.html', {"PositiveSearchResults": positive, "NegativeSearchResults": negative, "NeutralSearchResults": neutral, "SearchTerm": name, "TotalTweets": totalTweets}) # name is placeholder until we implement AI
 
 def Search(request):
     form = SearchTwitter() # have Django make a premade form for us?

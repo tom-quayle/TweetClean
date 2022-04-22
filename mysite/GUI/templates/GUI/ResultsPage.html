@@ -11,7 +11,7 @@
         <img src="/static/GUI/images/TweetClean.png" alt="TweetClean" class="responsive">
     </a>
     <h1>RESULTS</h1>
-    <p>We found [number] tweets containing your name...</p>
+    <p>We found [{{TotalTweets}}] tweets containing your name...</p>
     <p>{{SearchTerm}}</p> <!-- this variable comes from the Search view and contains relevant data for display -->
     <div class="navbar" id="myNavbar">
         <a href="{% url 'GUI:FAQs' %}">FAQs</a>
