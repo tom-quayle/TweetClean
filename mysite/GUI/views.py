@@ -23,10 +23,12 @@ def Results(request):
     name = request.GET['name']
     SelfObject = twitterCrawl(v2=True)
     SelfObject.search_tweets_v2('"{}" lang:en'.format(name))
-    #AIObject = AiSentiment()
-    #print(AIObject.excactResults(SelfObject.results))
-    print(SelfObject.results) # prints Tweets to console
-    return render(request,'GUI/ResultsPage.html', {"SearchResults": name}) # name is placeholder until we implement AI
+    AIObject = AiSentiment()
+    AIObject.excactResults(SelfObject.results)
+    neutral = len(AIObject.data['Neutral'])
+    negative = len(AIObject.data['Negative'])
+    positive = len(AIObject.data['Positive'])
+    return render(request,'GUI/ResultsPage.html', {"PositiveSearchResults": positive, "NegativeSearchResults": negative, "NeutralSearchResults": neutral, "SearchTerm": name}) # name is placeholder until we implement AI
 
 def Search(request):
     form = SearchTwitter() # have Django make a premade form for us?

@@ -11,15 +11,19 @@ from mysite.settings import BASE_DIR
 
 class AiSentiment:
     def __init__(self):
-        with open(os.path.join(BASE_DIR, 'static', 'model.json'), "r") as json_file:
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filepath = BASE_DIR + '/GUI/static/model.json'
+        with open(filepath, "r") as json_file:
             model_json = json_file.read()
         self.model = model_from_json(model_json)
-        self.model.load_weights("model-weights.h5")
+        self.model.load_weights(BASE_DIR + "/GUI/static/model-weights.h5")
         # serialize weights to HDF5
-        self.model.load_weights("model-weights.h5")
+        self.model.load_weights(BASE_DIR + "/GUI/static/model-weights.h5")
 
         # saving tokenizer
-        with open('GUI/tokenizer.pickle', 'rb') as handle:
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filepath = BASE_DIR + '/GUI/static/tokenizer.pickle'
+        with open(filepath, 'rb') as handle:
             self.tokenizer = pickle.load(handle)
 
     def result(self, query):
@@ -37,13 +41,13 @@ class AiSentiment:
         return sentiments
 
     def excactResults(self, results):
-        i = i['text']
         sentiments = {'Neutral': 0, 'Negative': 0, 'Positive': 0}
         sentiment = ['Neutral', 'Negative', 'Positive']
         self.Neutral = []
         self.Negative = []
         self.Positive = []
         for i in results:
+            i = i['text']
             res = self.result(i)
             val = sentiment[np.round(self.result(i), decimals=0).argmax(axis=1)[0]]
             if val == 'Neutral':
