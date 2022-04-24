@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import SearchTwitter # delete if not using forms.py
 from .Web_Crawler import twitterCrawl
+from .sentiment import AiSentiment
 
 def index(request):
     return HttpResponse('hello world')
@@ -21,9 +22,14 @@ def Manual(request):
 def Results(request):
     name = request.GET['name']
     SelfObject = twitterCrawl(v2=True)
-    SelfObject.search_tweets_v2(name)
-    print(SelfObject.results) # prints Tweets to console
-    return render(request,'GUI/ResultsPage.html', {"SearchResults": name}) # name is placeholder until we implement AI
+    SelfObject.search_tweets_v2('"{}" lang:en'.format(name))
+    AIObject = AiSentiment()
+    AIObject.excactResults(SelfObject.results)
+    neutral = len(AIObject.data['Neutral'])
+    negative = len(AIObject.data['Negative'])
+    positive = len(AIObject.data['Positive'])
+    totalTweets = neutral + negative + positive
+    return render(request,'GUI/ResultsPage.html', {"PositiveSearchResults": positive, "NegativeSearchResults": negative, "NeutralSearchResults": neutral, "SearchTerm": name, "TotalTweets": totalTweets}) # name is placeholder until we implement AI
 
 def Search(request):
     form = SearchTwitter() # have Django make a premade form for us?
