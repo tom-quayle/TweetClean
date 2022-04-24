@@ -33,7 +33,8 @@
       ['Negative', 2],
       ['Neutral', 4],
     ]);
-        var options = {'width':550, 'height':400, legend: {alignment: 'center', position: 'top'}};
+        var options = {'width':550, 'height':400, legend: {alignment: 'center', position: 'top'}, chartArea: {
+      backgroundColor: {fill: '#00acee', fillOpacity: 0.1},}, backgroundColor: {fill: '#00acee',fillOpacity: 0.8}, };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
     }
