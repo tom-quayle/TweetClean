@@ -21,11 +21,14 @@
 
     <div id='piechart' align='center'></div>
     
-    <a id="graphImage" href="{% url 'GUI:Search' %}">
-        <img src="add image source here"">
-    </a>
-    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="container">
+        <a id="graphImage" href="{% url 'GUI:Search' %}">
+            <img src="/static/GUI/images/distChart.jpg" alt="distChart">
+        </a>
+    </div>
 
     <script type="text/javascript">
     // Load google charts
@@ -45,7 +48,7 @@
     }
     </script>
     <div class="container">
-        <button class="button" onclick="history.back()"><span>Go Back</span></button>
+        <button class="button2" onclick="history.back()"><span>Go Back</span></button>
     </div>
 </body>
 </html> 

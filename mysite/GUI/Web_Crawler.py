@@ -30,7 +30,7 @@ class twitterCrawl:
             else:
                 self.results.append(tweet.text)
 
-    def search_tweets_v2(self, query, max=100):
+    def search_tweets_v2(self, query, max=250):
         for tweet in tweepy.Paginator(self.__client.search_recent_tweets, query=query,
                                       tweet_fields=['context_annotations', 'created_at'], max_results=100).flatten(limit=max):
             self.results.append(tweet.data)

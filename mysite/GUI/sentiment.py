@@ -83,16 +83,15 @@ class AiSentiment:
         ax.plot(['Neutral', 'Negative', 'Positive'], [0, 0, 0], '.b-', label="Negative statement")
         ax.plot(['Neutral', 'Negative', 'Positive'], [0, 0, 0], '.g-', label="Positive statement")
         for i in self.data['Neutral']:
-            ax.plot(['Neutral','Negative','Positive'], i.T, '.r-', linewidth=0.01, markersize=0.05)
+            ax.plot(['Neutral','Negative','Positive'], i.T, '.r-', linewidth=0.1, markersize=0.2)
         for i in self.data['Negative']:
-            ax.plot(['Neutral','Negative','Positive'], i.T, '.b-', linewidth=0.01, markersize=0.05)
+            ax.plot(['Neutral','Negative','Positive'], i.T, '.b-', linewidth=0.1, markersize=0.2)
         for i in self.data['Positive']:
-            ax.plot(['Neutral','Negative','Positive'], i.T, '.g-', linewidth=0.01, markersize=0.05)
+            ax.plot(['Neutral','Negative','Positive'], i.T, '.g-', linewidth=0.1, markersize=0.2)
 
         plt.rcParams["font.size"] = 7
         plt.legend(loc='upper left')
         plt.ylim(0, 1.3)
-        plt.tight_layout()
         plt.title("Confidence distribution")
         plt.ylabel("Confidence")
         plt.savefig("GUI/static/GUI/images/distChart.jpg")
