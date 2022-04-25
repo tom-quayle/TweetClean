@@ -11,8 +11,8 @@
         <img src="/static/GUI/images/TweetClean.png" alt="TweetClean" class="responsive">
     </a>
     <h1>RESULTS</h1>
-    <p>We found [number] tweets containing your name...</p>
-    <p>{{SearchResults}}</p> <!-- this variable comes from the Search view and contains relevant data for display -->
+    <p>We found [{{TotalTweets}}] tweets containing your name...</p>
+    <p>{{SearchTerm}}</p> <!-- this variable comes from the Search view and contains relevant data for display -->
     <div class="navbar" id="myNavbar">
         <a href="{% url 'GUI:FAQs' %}">FAQs</a>
         <a href="{% url 'GUI:Manual' %}">Manual</a>
@@ -29,9 +29,9 @@
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
       ['Sentiment', 'Number of Tweets'],
-      ['Positive', 8],
-      ['Negative', 2],
-      ['Neutral', 4],
+      ['Positive', {{PositiveSearchResults}}],
+      ['Negative', {{NegativeSearchResults}}],
+      ['Neutral', {{NeutralSearchResults}}],
     ]);
         var options = {'width':550, 'height':400, legend: {alignment: 'center', position: 'top'}, chartArea: {
       backgroundColor: {fill: '#00acee', fillOpacity: 0.1},}, backgroundColor: {fill: '#00acee',fillOpacity: 0.8}, colors: ['#32CD32', '#ff0000', '#A9A9A9']};
