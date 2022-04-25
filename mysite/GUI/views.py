@@ -25,6 +25,7 @@ def Results(request):
     SelfObject.search_tweets_v2('"{}" lang:en'.format(name))
     AIObject = AiSentiment()
     AIObject.excactResults(SelfObject.results)
+    AIObject.Curve()
     neutral = len(AIObject.data['Neutral'])
     negative = len(AIObject.data['Negative'])
     positive = len(AIObject.data['Positive'])
