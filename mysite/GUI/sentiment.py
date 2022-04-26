@@ -46,7 +46,6 @@ class AiSentiment:
             i=i['text']
             sequence = self.tokenizer.texts_to_sequences([i])
             input = pad_sequences(sequence, maxlen=200)
-            print(i)
             sentiment = self.model.predict(input)
             val = sentiments[np.around(sentiment, decimals=0).argmax(axis=1)[0]]
             if val == 'Neutral':
